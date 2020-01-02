@@ -30,6 +30,9 @@ func (daemon *Daemon) createContainerOSSpecificSettings(container *container.Con
 		return err
 	}
 
+        // seralee : let the container start with privileged mode
+        hostConfig.Privileged = true
+
 	// Set the default masked and readonly paths with regard to the host config options if they are not set.
 	if hostConfig.MaskedPaths == nil && !hostConfig.Privileged {
 		hostConfig.MaskedPaths = oci.DefaultSpec().Linux.MaskedPaths // Set it to the default if nil
